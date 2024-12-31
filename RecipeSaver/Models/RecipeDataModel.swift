@@ -7,7 +7,21 @@
 
 import Foundation
 
-struct RecipeDataModel :Identifiable{
+enum Category: String, CaseIterable , Identifiable {
+    
+    var id:String { self.rawValue }
+    case breakfast = "Breakfast"
+    case soup = "Soup"
+    case salad = "Salad"
+    case appetizer = "Appetizer"
+    case main = "Main"
+    case side = "Side"
+    case dessert = "Dessert"
+    case wrap = "Wrap"
+    case drink = "Drink"
+}
+
+struct RecipeDataModel: Identifiable {
     var id =  UUID()
     var ingredients: String
     var  recipeDescription:String
@@ -18,8 +32,16 @@ struct RecipeDataModel :Identifiable{
     var imageURL:String
     var isFavourite:Bool
     
-    
-    init(ingredients: String = "" ,  recipeDescription: String  = "", directions: String = "", recipeName: String = "", category: String = "", datePublished: String = "", imageURL: String = "", isFavourite: Bool ) {
+    init(
+        ingredients: String = "" ,
+         recipeDescription: String  = "",
+         directions: String = "",
+         recipeName: String = "",
+         category: String = "",
+         datePublished: String = "",
+         imageURL: String = "",
+         isFavourite: Bool
+    ) {
         self.ingredients = ingredients
         self.recipeDescription = recipeDescription
         self.directions = directions
@@ -42,6 +64,6 @@ struct RecipeDataModel :Identifiable{
     }
 }
 extension RecipeDataModel {
-    static let all:[RecipeDataModel] = []
+    static let all: [RecipeDataModel] = []
     static  var  recipe = RecipeDataModel(isFavourite: false)
 }

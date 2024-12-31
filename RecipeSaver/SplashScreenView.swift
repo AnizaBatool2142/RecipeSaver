@@ -51,8 +51,6 @@ struct SplashScreenView: View {
             })
         }
     }
-    
-    
 }
 
 #Preview {

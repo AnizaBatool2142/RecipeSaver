@@ -17,11 +17,8 @@ struct PersistenceController {
         container.loadPersistentStores {  storeDescription, error in
             if let _  = error  as NSError? {
                 // perform action for error
-                
             }
-                
         }
         container.viewContext.automaticallyMergesChangesFromParent = true
-        
     }
 }

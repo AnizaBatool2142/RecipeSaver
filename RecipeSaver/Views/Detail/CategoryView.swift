@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CategoryView: View {
     
-    @State   var recipeModels:[RecipeDataModel] = []
+    @State   var recipeModels: [RecipeDataModel] = []
     @FetchRequest(sortDescriptors: [
         NSSortDescriptor(key: "datePublished", ascending: false)
     ],
@@ -23,9 +23,7 @@ struct CategoryView: View {
         return recipeModels.filter{$0.category == category.rawValue }
     }
     var body: some View {
-        
-        
-        ScrollView{
+        ScrollView {
             RecipeList(recipes: filteredRecipes , isComingFromFavourite: false)
         }
         .onAppear(){
@@ -36,6 +34,7 @@ struct CategoryView: View {
     }
 }
 extension CategoryView {
+    
     func formateRecipes ( ) -> Void {
         guard  recipes.count > 0 else { return }
         recipeModels = RecipeFormatter.formattedRecipes(from: recipes)

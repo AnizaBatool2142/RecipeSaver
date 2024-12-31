@@ -7,7 +7,6 @@
 import SwiftUI
 
 struct RecipeCard: View {
-    
     var recipe: RecipeDataModel
     @State  var isFavourite: Bool
     

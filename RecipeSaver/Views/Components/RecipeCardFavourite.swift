@@ -9,8 +9,7 @@ import SwiftUI
 
 struct RecipeCardFavourite: View {
     var recipe: RecipeDataModel
-
-
+    
     var body: some View {
         VStack {
             AsyncImage(url: URL(string:recipe.imageURL)) { image in
@@ -42,7 +41,6 @@ struct RecipeCardFavourite: View {
                             .padding()
                     }
             }
-            
         }
         
         .frame(width: 160, height: 217, alignment: .top)
@@ -57,7 +55,6 @@ struct RecipeCardFavourite: View {
             RoundedRectangle(cornerRadius: 20, style: .continuous)
         )
         .shadow(color: Color.black.opacity(0.3), radius: 15, x: 0, y: 10)
-        
     }
 }
 

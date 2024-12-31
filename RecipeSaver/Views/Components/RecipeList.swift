@@ -34,7 +34,6 @@ struct RecipeList: View {
                         }
                     }
                 }
-                //  .onDelete(perform: delete)
             }
             
             .padding(.top)
@@ -42,21 +41,6 @@ struct RecipeList: View {
         .padding(.horizontal)
     }
 }
-
-//extension RecipeList {
-
-//    func delete (at offsets: IndexSet)
-//    {
-//        for index in offsets {
-//            let recipeToDelete = recipes[index]
-//            Task {
-//                RecipeSaverDataManager.shared.deleteRecipe(name: recipeToDelete.recipeName)
-//            }
-//        }
-//
-//    }
-
-//}
 
 #Preview {
     ScrollView{

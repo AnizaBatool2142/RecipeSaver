@@ -8,14 +8,6 @@ import SwiftUI
 
 struct AddRecipeView: View {
     
-    @State   var recipeModels:[RecipeDataModel] = []
-    @FetchRequest(sortDescriptors: [
-        NSSortDescriptor(key: "datePublished", ascending: false)
-    ],
-                  animation: .default
-    )
-   private var recipes: FetchedResults<RecipeData>
-    
     @State private var name: String = ""
     @State private var selectedCategory: Category = Category.main
     @State private var description: String = ""
@@ -87,22 +79,12 @@ struct AddRecipeView: View {
             
             .navigationDestination(isPresented: $navigateToRecipe) {
                 RecipeView(recipe:  RecipeDataModel.recipe)
-                //recipeModels.sorted { $0.datePublished > $1.datePublished }[0]
             }
         }
         .navigationViewStyle(.stack)
     }
     
 }
-extension AddRecipeView {
-    
-    func formateRecipes ( ) -> Void {
-        guard  recipes.count > 0 else { return }
-        recipeModels = RecipeFormatter.formattedRecipes(from: recipes)
-  }
-
-}
-
 #Preview {
      AddRecipeView()
   
@@ -126,11 +108,7 @@ extension AddRecipeView {
             isFavourite: false
             
          )
-    
-        
         RecipeDataModel.recipe = recipe
-        print(RecipeDataModel.recipe.isFavourite)
-        
         RecipeSaverDataManager.shared.saveNewRecipe(recipeDataModelObject: RecipeDataModel.recipe)
     }
     
@@ -142,5 +120,4 @@ extension AddRecipeView {
             directions = ""
             imageURL = ""
         }
-
 }

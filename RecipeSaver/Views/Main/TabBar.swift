@@ -7,14 +7,14 @@
 
 import SwiftUI
 
-struct TabBar: View {    
+struct TabBar: View {  
+    
     init() {
         UITabBar.appearance().backgroundColor = UIColor(.white)
-        //UITabBar.appearance().tintColor = UIColor(.green)
     }
+    
     var body: some View {
-        TabView{
-            Group {
+        TabView {
                 HomeView()
                     .tabItem {
                         Label("Home", systemImage: "house")
@@ -35,12 +35,10 @@ struct TabBar: View {
                         Label("Favorites", systemImage: "heart")
                     }
                 
-                SettingsView()
-                    .tabItem {
-                        Label("Settings", systemImage: "gear")
-                    }
-                
-            }
+//                SettingsView()
+//                    .tabItem {
+//                        Label("Settings", systemImage: "gear")
+//                    }
         }
         .accentColor(.black)
                 

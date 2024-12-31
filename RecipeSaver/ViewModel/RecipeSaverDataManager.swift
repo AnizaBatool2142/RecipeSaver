@@ -8,17 +8,16 @@
 import SwiftUI
 import CoreData
 
-class RecipeSaverDataManager{
+class RecipeSaverDataManager {
     
     static let  shared = RecipeSaverDataManager()
-    
     let viewContext: NSManagedObjectContext
     
     init() {
         viewContext =  PersistenceController.shared.container.viewContext
     }
-    
     func saveNewRecipe(recipeDataModelObject: RecipeDataModel) -> Void {
+        
         // create a new recipedata managedobject
         let recipeDataEntity = RecipeData(context: viewContext)
         recipeDataEntity.recipeName = recipeDataModelObject.recipeName
@@ -33,9 +32,15 @@ class RecipeSaverDataManager{
         print("Recipe saved Successfully. With ID: \(recipeDataModelObject.id) ")
         
     }
-    
-    func updateRecipe(recipeName: String , recipeDescription: String , ingredients:String , directions: String  , isFavourite: Bool , id: UUID , datePublished: String )  {
-        
+    func updateRecipe(
+        recipeName: String ,
+        recipeDescription: String ,
+        ingredients:String ,
+        directions: String  ,
+        isFavourite: Bool ,
+        id: UUID ,
+        datePublished: String
+    ){
         let fetchRequest =
         NSFetchRequest<NSManagedObject>(entityName: "RecipeData")
         fetchRequest.returnsObjectsAsFaults = false
@@ -43,7 +48,7 @@ class RecipeSaverDataManager{
         let result = try? viewContext.fetch(fetchRequest)
         
         if result?.count == 1 {
-                  let record = result![0]
+            let record = result![0]
             record.setValue(recipeName, forKey: "recipeName")
             record.setValue(recipeDescription, forKey: "recipeDescription")
             record.setValue(ingredients, forKey: "ingredients")
@@ -51,14 +56,14 @@ class RecipeSaverDataManager{
             record.setValue(isFavourite, forKey: "isFavourite")
             record.setValue(id, forKey: "id")
             record.setValue(datePublished, forKey: "datePublished")
-                  do {
-                     try viewContext.save()
-                     print("saved!")
-                    } catch {
-                  print(error.localizedDescription)
-              }
-           }
-
+            do {
+                try viewContext.save()
+                print("saved!")
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+        
     }
     func deleteRecipe(name: String) {
         do {
@@ -73,11 +78,11 @@ class RecipeSaverDataManager{
         }
         
     }
-//    func deleteAll() {
-//          let fetchRequest1: NSFetchRequest<NSFetchRequestResult> = RecipeData.fetchRequest()
-//          let batchDeleteRequest1 = NSBatchDeleteRequest(fetchRequest: fetchRequest1)
-//          _ = try? viewContext.execute(batchDeleteRequest1)
-//    }
-//    
+    //    func deleteAll() {
+    //          let fetchRequest1: NSFetchRequest<NSFetchRequestResult> = RecipeData.fetchRequest()
+    //          let batchDeleteRequest1 = NSBatchDeleteRequest(fetchRequest: fetchRequest1)
+    //          _ = try? viewContext.execute(batchDeleteRequest1)
+    //    }
+    //
     
 }

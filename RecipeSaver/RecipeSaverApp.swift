@@ -18,5 +18,4 @@ struct RecipeSaverApp: App {
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }
-    
 }

@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct HomeView: View {
-    
     @State var recipeModels: [RecipeDataModel] = []
     @FetchRequest(sortDescriptors: [
         NSSortDescriptor(key: "datePublished", ascending: false)
