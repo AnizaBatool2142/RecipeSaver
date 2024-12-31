@@ -14,7 +14,7 @@ struct CategoriesView: View {
         NavigationView {
             
             ZStack {
-                Color.darkOrange
+                Color.pear
                     .edgesIgnoringSafeArea(.all)
                 VStack {
                     List {
@@ -29,8 +29,7 @@ struct CategoriesView: View {
                             
                         }
                         
-                        .listRowBackground(Color.darkOrange)
-                        .listItemTint(Color.darkOrange)
+                        .listRowBackground(Color.pear)
                         
                     }
                     .listStyle(.plain)

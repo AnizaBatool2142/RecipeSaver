@@ -21,14 +21,14 @@ struct HomeView: View {
         NavigationView {
             
             ZStack {
-                Color.darkOrange
+                Color.pear
                     .edgesIgnoringSafeArea(.all)
                 
                 VStack {
                     ScrollView {
                         RecipeList(recipes: recipeModels, isComingFromFavourite: false)
                     }
-                    .background(Color.darkOrange)
+                    .background(Color.pear)
                     .navigationTitle("My Recipes")
                    
                 }

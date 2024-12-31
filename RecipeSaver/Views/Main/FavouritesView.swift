@@ -20,14 +20,14 @@ struct FavouritesView: View {
         
         NavigationView {
             ZStack {
-                Color.darkOrange
+                Color.pear
                     .edgesIgnoringSafeArea(.all)
                 
                 VStack {
                     ScrollView {
                         RecipeList(recipes: recipeModels , isComingFromFavourite: true)
                     }
-                    .background(Color.orange)
+                    .background(Color.pear)
                     .navigationTitle("My Recipes")
                 }
                 .onAppear(){

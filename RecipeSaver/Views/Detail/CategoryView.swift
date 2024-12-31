@@ -30,7 +30,7 @@ struct CategoryView: View {
             formateRecipes()
         }
         .navigationTitle(category.rawValue + "s")
-        .background(Color.darkOrange)
+        .background(Color.pear)
     }
 }
 extension CategoryView {

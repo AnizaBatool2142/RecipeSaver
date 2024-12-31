@@ -18,71 +18,75 @@ struct AddRecipeView: View {
     
     @Environment(\.dismiss) var dismiss
     var body: some View {
-        
-        NavigationStack {
-            Form {
-                Section(header: Text("Name")) {
-                    TextField("Recipe Name", text: $name)
+            
+            NavigationStack {
+                Form {
+                    Section(header: Text("Name")) {
+                        TextField("Recipe Name", text: $name)
+                    }
+                    
+                    Section(header: Text("Category")) {
+                        Picker("Category", selection: $selectedCategory) {
+                            ForEach(Category.allCases) { category in
+                                Text(category.rawValue)
+                                    .tag(category)
+                            }
+                        }
+                        .pickerStyle(.menu)
+                    }
+                    
+                    Section(header: Text("Description")) {
+                        TextEditor(text: $description)
+                    }
+                    
+                    Section(header: Text("Ingredients")) {
+                        TextEditor(text: $ingredients)
+                    }
+                    
+                    Section(header: Text("Directions")) {
+                        TextEditor(text: $directions)
+                    }
+                    Section(header: Text("Image URL")) {
+                        TextEditor(text: $imageURL)
+                    }
                 }
-                
-                Section(header: Text("Category")) {
-                    Picker("Category", selection: $selectedCategory) {
-                        ForEach(Category.allCases) { category in
-                            Text(category.rawValue)
-                                .tag(category)
+                .foregroundColor(Color.black)
+ 
+                .toolbar(content: {
+                    ToolbarItem(placement: .navigationBarLeading) {
+                        Button {
+                            dismiss()
+                        } label: {
+                            Label("Cancel", systemImage: "xmark")
+                                .labelStyle(.iconOnly)
                         }
                     }
-                    .pickerStyle(.menu)
-                }
+                    
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        Button {
+                            
+                            saveRecipe()
+                            navigateToRecipe = true
+                            clearFields()
+                            
+                        } label: {
+                            Label("Done", systemImage: "checkmark")
+                                .labelStyle(.iconOnly)
+                        }
+                        .disabled(name.isEmpty || selectedCategory.rawValue.isEmpty || ingredients.isEmpty || description.isEmpty || imageURL.isEmpty)
+                    }
+                })
+                .navigationTitle("New Recipe")
+                .navigationBarTitleDisplayMode(.inline)
                 
-                Section(header: Text("Description")) {
-                    TextEditor(text: $description)
-                }
-                
-                Section(header: Text("Ingredients")) {
-                    TextEditor(text: $ingredients)
-                }
-                
-                Section(header: Text("Directions")) {
-                    TextEditor(text: $directions)
-                }
-                Section(header: Text("Image URL")) {
-                    TextEditor(text: $imageURL)
+                .navigationDestination(isPresented: $navigateToRecipe) {
+                    RecipeView(recipe:  RecipeDataModel.recipe)
                 }
             }
-            .toolbar(content: {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Button {
-                        dismiss()
-                    } label: {
-                        Label("Cancel", systemImage: "xmark")
-                            .labelStyle(.iconOnly)
-                    }
-                }
-                
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button {
-                        
-                        saveRecipe()
-                        navigateToRecipe = true
-                        clearFields()
-                        
-                    } label: {
-                        Label("Done", systemImage: "checkmark")
-                            .labelStyle(.iconOnly)
-                    }
-                    .disabled(name.isEmpty || selectedCategory.rawValue.isEmpty || ingredients.isEmpty || description.isEmpty || imageURL.isEmpty)
-                }
-            })
-            .navigationTitle("New Recipe")
-            .navigationBarTitleDisplayMode(.inline)
-            
-            .navigationDestination(isPresented: $navigateToRecipe) {
-                RecipeView(recipe:  RecipeDataModel.recipe)
-            }
-        }
+    
         .navigationViewStyle(.stack)
     }
+        
     
 }
 #Preview {

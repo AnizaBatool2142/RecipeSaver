@@ -66,6 +66,7 @@ struct RecipeView: View {
                 }
             }
         }
+        .background(Color.pear)
         .ignoresSafeArea(.container, edges: .top)
     }
 }

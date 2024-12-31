@@ -46,8 +46,8 @@ struct RecipeCard: View {
                 update()
             }) {
                 Image(systemName: isFavourite ? "heart.fill" : "heart")
-                    .foregroundColor(isFavourite ? .darkOrange : .white)
-                    .padding() 
+                    .foregroundColor(isFavourite ? .peridot : .white)
+                    .padding()
             }
         }
         

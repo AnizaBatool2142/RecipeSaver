@@ -14,7 +14,7 @@ struct NewRecipeView: View {
         
         NavigationView {
             ZStack {
-                Color.darkOrange
+                Color.pear
                     .edgesIgnoringSafeArea(.all)
                 Button("Add recipe manually") {
                     showAddRecipe = true
